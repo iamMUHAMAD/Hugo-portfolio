@@ -1,0 +1,19 @@
+{{- $profile := hugo.Data.profile }}
+<section class="section" id="about" aria-labelledby="about-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" "01" "title" "About" "id" "about-title") }}
+    <div class="section__content">
+      <div class="prose prose--lead" data-reveal>
+        {{- range $profile.bio }}<p>{{ . }}</p>{{ end }}
+      </div>
+      {{- with $profile.interests }}
+        <div class="about__interests" data-reveal>
+          <h3 class="label mono">Interests</h3>
+          <ul class="tags" role="list">
+            {{- range . }}<li class="tag">{{ . }}</li>{{ end }}
+          </ul>
+        </div>
+      {{- end }}
+    </div>
+  </div>
+</section>

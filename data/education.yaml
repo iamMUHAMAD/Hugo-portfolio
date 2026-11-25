@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------------
+# Education. Newest first. Empty fields are hidden.
+# -----------------------------------------------------------------------------
+
+- institution: Salahaddin University
+  program: Software Engineering & Informatics
+  status: Current student
+  location: ""      # PLACEHOLDER — e.g. "Erbil"
+  start: ""         # PLACEHOLDER — start year, e.g. "2022"
+  end: ""           # PLACEHOLDER — expected graduation year, e.g. "Expected 2026"
+  # Optional bullet points: relevant courses, graduation project, etc.
+  details: []

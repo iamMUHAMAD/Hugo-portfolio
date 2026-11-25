@@ -1,0 +1,37 @@
+{{- /* Project card. Context: a project page. The title link covers the whole card;
+     repository/demo links sit above it so they remain separately clickable. */ -}}
+<article class="project-card{{ if .Params.placeholder }} project-card--placeholder{{ end }}" data-reveal>
+  <div class="project-card__meta mono">
+    {{- with .Params.category }}<span>{{ . }}</span>{{ end }}
+    {{- with .Params.year }}<span>{{ . }}</span>{{ end }}
+    {{- if .Params.placeholder }}<span class="badge badge--placeholder">Placeholder</span>{{ end }}
+  </div>
+
+  <h3 class="project-card__title">
+    <a class="project-card__link" href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h3>
+
+  {{- with .Summary | plainify | strings.TrimSpace }}
+    <p class="project-card__summary">{{ . }}</p>
+  {{- end }}
+
+  {{- with .Params.tech }}
+    <ul class="tags" role="list" aria-label="Technologies">
+      {{- range . }}<li class="tag">{{ . }}</li>{{ end }}
+    </ul>
+  {{- end }}
+
+  <div class="project-card__footer">
+    <span class="project-card__more" aria-hidden="true">View project {{ partial "icon.html" "arrow-right" }}</span>
+    {{- if or .Params.repo .Params.demo }}
+      <ul class="project-card__actions" role="list">
+        {{- with .Params.repo }}
+          <li><a href="{{ . }}" rel="noopener" target="_blank">{{ partial "icon.html" "github" }}<span class="visually-hidden">{{ $.Title }} — </span>Code</a></li>
+        {{- end }}
+        {{- with .Params.demo }}
+          <li><a href="{{ . }}" rel="noopener" target="_blank">{{ partial "icon.html" "external" }}<span class="visually-hidden">{{ $.Title }} — </span>Live</a></li>
+        {{- end }}
+      </ul>
+    {{- end }}
+  </div>
+</article>

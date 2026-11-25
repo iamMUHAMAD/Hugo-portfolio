@@ -1,0 +1,32 @@
+{{- $profile := hugo.Data.profile }}
+<section class="hero" aria-labelledby="hero-title">
+  <div class="container hero__grid">
+    <div class="hero__intro">
+      <p class="eyebrow mono">{{ $profile.title }}</p>
+      <h1 class="hero__title" id="hero-title">{{ $profile.name }}</h1>
+      <p class="hero__tagline">{{ $profile.tagline }}</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="{{ "projects/" | relURL }}">View projects {{ partial "icon.html" "arrow-right" }}</a>
+        <a class="button button--ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+
+    <aside class="spec" aria-label="Profile summary">
+      <div class="spec__bar mono" aria-hidden="true">
+        <span class="spec__dot"></span><span>profile.yaml</span>
+      </div>
+      <dl class="spec__list">
+        {{- range $profile.summary }}
+          <div class="spec__row">
+            <dt class="mono">{{ .label }}</dt>
+            <dd>{{ .value }}</dd>
+          </div>
+        {{- end }}
+        <div class="spec__row">
+          <dt class="mono">Studying at</dt>
+          <dd>Salahaddin University</dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>

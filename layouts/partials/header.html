@@ -1,0 +1,33 @@
+{{- /* Site header with primary navigation.
+     Without JavaScript the menu is always visible; with JS it collapses on small screens. */ -}}
+{{- $current := . }}
+{{- $home := site.Home.RelPermalink }}
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ $home }}" {{ if .IsHome }}aria-current="page"{{ end }}>
+      <span class="brand__mark" aria-hidden="true">MS</span>
+      <span class="brand__name">{{ site.Title }}</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" hidden>
+      <span class="nav-toggle__bars" aria-hidden="true"></span>
+      <span class="nav-toggle__label">Menu</span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+      <ul class="primary-nav__list" role="list">
+        {{- range site.Menus.main }}
+          {{- $href := .URL }}
+          {{- if hasPrefix .URL "#" }}
+            {{- /* Anchor links resolve to the home page so they work from every page. */}}
+            {{- $href = printf "%s%s" $home .URL }}
+          {{- end }}
+          {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+          <li>
+            <a class="primary-nav__link" href="{{ $href }}" {{ if $active }}aria-current="page"{{ end }}>{{ .Name }}</a>
+          </li>
+        {{- end }}
+      </ul>
+    </nav>
+  </div>
+</header>

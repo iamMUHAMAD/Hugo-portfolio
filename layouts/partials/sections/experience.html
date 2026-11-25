@@ -1,0 +1,19 @@
+{{- /* Rendered only when data/experience.yaml contains entries. Context: dict with "num". */ -}}
+<section class="section" id="experience" aria-labelledby="experience-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" .num "title" "Experience" "id" "experience-title") }}
+    <div class="section__content">
+      <ol class="timeline" role="list">
+        {{- range hugo.Data.experience }}
+          {{- partial "timeline-item.html" (dict
+              "title" .role
+              "org" .organization
+              "location" .location
+              "start" .start
+              "end" .end
+              "points" .points) }}
+        {{- end }}
+      </ol>
+    </div>
+  </div>
+</section>

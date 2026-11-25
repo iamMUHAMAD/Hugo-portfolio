@@ -1,0 +1,11 @@
+{{- define "main" }}
+<div class="container page not-found">
+  <p class="eyebrow mono">Error 404</p>
+  <h1 class="page-header__title">Page not found</h1>
+  <p class="page-header__lead">The page you are looking for does not exist or has been moved.</p>
+  <div class="hero__actions">
+    <a class="button button--primary" href="{{ site.Home.RelPermalink }}">Back to home</a>
+    <a class="button button--ghost" href="{{ "projects/" | relURL }}">View projects</a>
+  </div>
+</div>
+{{- end }}

@@ -1,0 +1,7 @@
+{{- /* Numbered section heading.
+     Usage: {{ partial "section-heading.html" (dict "num" "01" "title" "About" "id" "about-title") }} */ -}}
+<header class="section-heading">
+  <p class="section-heading__num mono" aria-hidden="true">{{ .num }}</p>
+  <h2 class="section-heading__title" id="{{ .id }}">{{ .title }}</h2>
+  {{- with .lead }}<p class="section-heading__lead">{{ . }}</p>{{ end }}
+</header>

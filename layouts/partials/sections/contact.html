@@ -1,0 +1,13 @@
+{{- /* Context: dict with "num". */ -}}
+<section class="section section--contact" id="contact" aria-labelledby="contact-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" .num "title" "Contact" "id" "contact-title") }}
+    <div class="section__content">
+      <p class="contact__lead" data-reveal>
+        Open to conversations about internships, junior roles and software projects.
+        The best way to reach me is by email.
+      </p>
+      <div data-reveal>{{ partial "contact-links.html" . }}</div>
+    </div>
+  </div>
+</section>

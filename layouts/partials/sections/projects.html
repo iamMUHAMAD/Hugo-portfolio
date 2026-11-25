@@ -1,0 +1,20 @@
+{{- $projects := (where site.RegularPages "Section" "projects").ByWeight }}
+{{- $featured := where $projects "Params.featured" true }}
+{{- if not $featured }}{{ $featured = first 4 $projects }}{{ end }}
+<section class="section" id="projects" aria-labelledby="projects-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" "03" "title" "Projects" "id" "projects-title" "lead" "Selected software projects.") }}
+    <div class="section__content">
+      {{- if $featured }}
+        <div class="project-grid">
+          {{- range $featured }}{{ partial "project-card.html" . }}{{ end }}
+        </div>
+        <p class="section__more">
+          <a class="text-link" href="{{ "projects/" | relURL }}">All projects {{ partial "icon.html" "arrow-right" }}</a>
+        </p>
+      {{- else }}
+        <p>{{ partial "placeholder.html" "Projects" }}</p>
+      {{- end }}
+    </div>
+  </div>
+</section>

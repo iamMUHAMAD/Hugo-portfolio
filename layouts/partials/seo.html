@@ -1,0 +1,58 @@
+{{- /* Title, description, canonical URL, Open Graph, Twitter card and JSON-LD. */ -}}
+{{- $profile := hugo.Data.profile }}
+
+{{- $title := "" }}
+{{- if .IsHome }}
+  {{- $title = printf "%s — %s" site.Title $profile.title }}
+{{- else }}
+  {{- $title = printf "%s · %s" .Title site.Title }}
+{{- end }}
+
+{{- $description := or .Description (.Summary | plainify) site.Params.description | plainify | strings.TrimSpace | truncate 160 }}
+{{- $image := site.Params.ogImage | absURL }}
+
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<meta name="author" content="{{ site.Params.author }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{- if .Params.placeholder }}
+<meta name="robots" content="noindex">
+{{- end }}
+
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ replace (site.Language.Locale | default "en") "-" "_" }}">
+<meta property="og:image" content="{{ $image }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{ $profile.name }} — {{ $profile.title }}">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image }}">
+
+{{- if .IsHome }}
+  {{- $sameAs := slice }}
+  {{- range $profile.social }}{{ with .url }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
+
+  {{- $knows := slice }}
+  {{- range hugo.Data.skills }}{{ range .items }}{{ $knows = $knows | append . }}{{ end }}{{ end }}
+
+  {{- $person := dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" $profile.name
+      "jobTitle" $profile.title
+      "url" site.Home.Permalink
+      "description" site.Params.description
+      "knowsAbout" $knows
+      "affiliation" (dict "@type" "CollegeOrUniversity" "name" "Salahaddin University")
+  }}
+  {{- with $sameAs }}{{ $person = merge $person (dict "sameAs" .) }}{{ end }}
+  {{- with $profile.email }}{{ $person = merge $person (dict "email" (printf "mailto:%s" .)) }}{{ end }}
+<script type="application/ld+json">{{ $person | jsonify | safeJS }}</script>
+{{- end }}

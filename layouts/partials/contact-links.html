@@ -1,0 +1,30 @@
+{{- /* Contact list: email + social profiles. Missing items show a placeholder marker. */ -}}
+{{- $profile := hugo.Data.profile }}
+<ul class="contact-list" role="list">
+  <li class="contact-list__item">
+    <span class="contact-list__label mono">Email</span>
+    {{- with $profile.email }}
+      <a class="contact-list__value" href="mailto:{{ . }}">{{ partial "icon.html" "mail" }}{{ . }}</a>
+    {{- else }}
+      <span class="contact-list__value">{{ partial "placeholder.html" "Email address" }}</span>
+    {{- end }}
+  </li>
+  {{- range $profile.social }}
+    <li class="contact-list__item">
+      <span class="contact-list__label mono">{{ .name }}</span>
+      {{- if .url }}
+        <a class="contact-list__value" href="{{ .url }}" rel="me noopener" target="_blank">
+          {{- partial "icon.html" (.icon | default "link") }}{{ .url | replaceRE `^https?://(www\.)?` "" | strings.TrimSuffix "/" }}
+        </a>
+      {{- else }}
+        <span class="contact-list__value">{{ partial "placeholder.html" (printf "%s profile" .name) }}</span>
+      {{- end }}
+    </li>
+  {{- end }}
+  <li class="contact-list__item">
+    <span class="contact-list__label mono">Location</span>
+    <span class="contact-list__value">
+      {{- with $profile.location }}{{ partial "icon.html" "pin" }}{{ . }}{{ else }}{{ partial "placeholder.html" "Location" }}{{ end }}
+    </span>
+  </li>
+</ul>

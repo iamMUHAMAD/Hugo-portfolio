@@ -1,0 +1,30 @@
+# -----------------------------------------------------------------------------
+# Technical skills grouped by category. Order here = order on the site.
+# primary: true highlights the group as the main professional focus.
+# -----------------------------------------------------------------------------
+
+- category: Backend Development
+  primary: true
+  description: Main area of focus and experience.
+  items:
+    - Laravel
+    - PHP
+    - Java
+    - Spring Boot
+
+- category: Frontend & Mobile
+  description: Interfaces and full-stack work.
+  items:
+    - React
+    - Flutter
+
+- category: Databases
+  description: Data modelling and queries.
+  items:
+    - SQL
+
+- category: Engineering & Design Tools
+  description: Additional technical skills.
+  items:
+    - AutoCAD — 2D design
+    - AutoCAD — CNC

@@ -1,0 +1,107 @@
+/* ==========================================================================
+   Print — clean black-on-white output, optimised for the CV page (A4).
+   ========================================================================== */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 16mm;
+  }
+
+  :root {
+    --color-bg: #fff;
+    --color-surface: #fff;
+    --color-surface-2: #fff;
+    --color-text: #000;
+    --color-muted: #333;
+    --color-faint: #555;
+    --color-border: #ccc;
+    --color-border-strong: #999;
+    --color-accent: #0b5d57;
+    --color-accent-strong: #0b5d57;
+    --color-accent-soft: #fff;
+    --shadow-card: none;
+  }
+
+  html {
+    font-size: 10.5pt;
+  }
+
+  body {
+    display: block;
+    background: #fff;
+    color: #000;
+  }
+
+  .site-header,
+  .site-footer,
+  .skip-link,
+  .cv-toolbar,
+  .breadcrumb,
+  .pager,
+  .hero__actions,
+  .project-card__footer,
+  .button {
+    display: none !important;
+  }
+
+  .page {
+    padding: 0;
+  }
+
+  .container {
+    max-width: none;
+    padding: 0;
+  }
+
+  .section {
+    padding-block: 1.25rem;
+    break-inside: avoid-page;
+  }
+
+  .section-heading {
+    position: static;
+  }
+
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .cv {
+    max-width: none;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .cv__entry,
+  .project-card,
+  .skill-group,
+  .timeline__item {
+    break-inside: avoid;
+  }
+
+  .project-card,
+  .skill-group,
+  .spec {
+    box-shadow: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  /* Show link targets for printed project pages */
+  .prose a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    color: #555;
+  }
+
+  .placeholder {
+    border-color: #999;
+    background: none;
+    color: #555;
+  }
+}

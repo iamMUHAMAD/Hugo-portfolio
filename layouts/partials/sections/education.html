@@ -1,0 +1,19 @@
+<section class="section" id="education" aria-labelledby="education-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" "04" "title" "Education" "id" "education-title") }}
+    <div class="section__content">
+      <ol class="timeline" role="list">
+        {{- range hugo.Data.education }}
+          {{- partial "timeline-item.html" (dict
+              "title" .program
+              "org" .institution
+              "location" .location
+              "start" .start
+              "end" .end
+              "status" .status
+              "points" .details) }}
+        {{- end }}
+      </ol>
+    </div>
+  </div>
+</section>

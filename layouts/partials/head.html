@@ -1,0 +1,26 @@
+{{- /* Document head: meta, fonts, styles, icons. SEO tags live in seo.html. */ -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="{{ site.Params.themeColor | default "#FAFAF7" }}" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1013" media="(prefers-color-scheme: dark)">
+
+{{- partial "seo.html" . }}
+
+{{- /* Mark that JavaScript is available before first paint (enables menu toggle and reveal effects). */}}
+<script>document.documentElement.classList.add("js")</script>
+
+<link rel="preload" href="{{ "fonts/inter-latin-var.woff2" | relURL }}" as="font" type="font/woff2" crossorigin>
+
+{{- /* Hugo Pipes: concatenate CSS modules → minify → fingerprint (cache-busting + SRI). */}}
+{{- $modules := slice "css/tokens.css" "css/base.css" "css/layout.css" "css/components.css" "css/print.css" }}
+{{- $resources := slice }}
+{{- range $modules }}
+  {{- $resources = $resources | append (resources.Get .) }}
+{{- end }}
+{{- $css := $resources | resources.Concat "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" crossorigin="anonymous">
+
+<link rel="icon" href="{{ "favicon.ico" | relURL }}" sizes="32x32">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{{ "apple-touch-icon.png" | relURL }}">

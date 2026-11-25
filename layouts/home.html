@@ -1,0 +1,15 @@
+{{- define "main" }}
+  {{- partial "sections/hero.html" . }}
+  {{- partial "sections/about.html" . }}
+  {{- partial "sections/skills.html" . }}
+  {{- partial "sections/projects.html" . }}
+  {{- partial "sections/education.html" . }}
+
+  {{- /* Experience appears only when verified entries exist; section numbers adjust. */}}
+  {{- if hugo.Data.experience }}
+    {{- partial "sections/experience.html" (dict "num" "05") }}
+    {{- partial "sections/contact.html" (dict "num" "06") }}
+  {{- else }}
+    {{- partial "sections/contact.html" (dict "num" "05") }}
+  {{- end }}
+{{- end }}

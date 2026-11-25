@@ -1,0 +1,10 @@
+{{- /* Fallback for any standalone Markdown page. */ -}}
+{{- define "main" }}
+<article class="container page">
+  <header class="page-header">
+    <h1 class="page-header__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+  </header>
+  <div class="prose">{{ .Content }}</div>
+</article>
+{{- end }}

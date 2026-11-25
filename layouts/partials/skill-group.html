@@ -1,0 +1,11 @@
+{{- /* One skill category from data/skills.yaml. */ -}}
+<div class="skill-group{{ if .primary }} skill-group--primary{{ end }}" data-reveal>
+  <div class="skill-group__head">
+    <h3 class="skill-group__title">{{ .category }}</h3>
+    {{- if .primary }}<span class="badge">Primary focus</span>{{ end }}
+  </div>
+  {{- with .description }}<p class="skill-group__desc">{{ . }}</p>{{ end }}
+  <ul class="tags" role="list">
+    {{- range .items }}<li class="tag{{ if $.primary }} tag--accent{{ end }}">{{ . }}</li>{{ end }}
+  </ul>
+</div>

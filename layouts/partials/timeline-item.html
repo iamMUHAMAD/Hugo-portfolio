@@ -1,0 +1,25 @@
+{{- /* Education or experience entry.
+     Usage: {{ partial "timeline-item.html" (dict "title" … "org" … "start" … "end" … "location" … "status" … "points" …) }}
+     Missing dates are shown as a placeholder marker. */ -}}
+<li class="timeline__item" data-reveal>
+  <div class="timeline__when mono">
+    {{- if or .start .end }}
+      {{- with .start }}{{ . }}{{ end }}{{ if and .start .end }} – {{ end }}{{ with .end }}{{ . }}{{ end }}
+    {{- else }}
+      {{- partial "placeholder.html" "Dates" }}
+    {{- end }}
+  </div>
+  <div class="timeline__body">
+    <h3 class="timeline__title">{{ .title }}</h3>
+    <p class="timeline__org">
+      {{- .org }}
+      {{- with .location }}<span class="timeline__sep" aria-hidden="true"> · </span>{{ . }}{{ end }}
+    </p>
+    {{- with .status }}<p class="timeline__status"><span class="status-dot" aria-hidden="true"></span>{{ . }}</p>{{ end }}
+    {{- with .points }}
+      <ul class="timeline__points">
+        {{- range . }}<li>{{ . }}</li>{{ end }}
+      </ul>
+    {{- end }}
+  </div>
+</li>

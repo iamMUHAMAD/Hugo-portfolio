@@ -1,0 +1,72 @@
+# =============================================================================
+# Hugo configuration — Muhammed Sadiq · Personal portfolio & CV
+# Personal content lives in data/*.yaml and content/. This file holds only
+# site-wide settings: URLs, SEO defaults, navigation and build options.
+# =============================================================================
+
+# PLACEHOLDER: replace with the real address before deploying.
+# Examples: "https://username.github.io/"  or  "https://www.yourdomain.com/"
+# If the site is served from a sub-path (e.g. GitHub project pages), include it:
+# "https://username.github.io/portfolio/"
+baseURL = "https://example.com/"
+
+locale = "en"
+title = "Muhammed Sadiq"
+
+# The site has no blog, tags or categories, so these page kinds are disabled.
+disableKinds = ["taxonomy", "term", "rss"]
+
+enableRobotsTXT = true
+
+[params]
+  # Default meta description (used when a page does not define its own).
+  description = "Muhammed Sadiq — Software Engineering & Informatics student at Salahaddin University, focused on backend development with Laravel and PHP."
+  author = "Muhammed Sadiq"
+  # Social share image (Open Graph / Twitter), relative to static/.
+  ogImage = "images/og-image.png"
+  # Theme colour shown by mobile browsers.
+  themeColor = "#FAFAF7"
+
+# -----------------------------------------------------------------------------
+# Navigation. Anchor links ("#about") point to sections of the home page;
+# pageRef links point to real pages. Order is controlled by weight.
+# -----------------------------------------------------------------------------
+[menus]
+  [[menus.main]]
+    name = "About"
+    url = "#about"
+    weight = 10
+  [[menus.main]]
+    name = "Skills"
+    url = "#skills"
+    weight = 20
+  [[menus.main]]
+    name = "Projects"
+    pageRef = "/projects"
+    weight = 30
+  [[menus.main]]
+    name = "Education"
+    url = "#education"
+    weight = 40
+  [[menus.main]]
+    name = "Contact"
+    url = "#contact"
+    weight = 50
+  [[menus.main]]
+    name = "CV"
+    pageRef = "/cv"
+    weight = 60
+
+[sitemap]
+  changeFreq = "monthly"
+  priority = 0.5
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = false
+  [markup.highlight]
+    noClasses = false
+
+[minify]
+  [minify.tdewolff.html]
+    keepWhitespace = false

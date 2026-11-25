@@ -1,0 +1,12 @@
+<section class="section" id="skills" aria-labelledby="skills-title">
+  <div class="container section__grid">
+    {{- partial "section-heading.html" (dict "num" "02" "title" "Skills" "id" "skills-title" "lead" "Technologies I work with, grouped by area.") }}
+    <div class="section__content">
+      <div class="skills-grid">
+        {{- range hugo.Data.skills }}
+          {{- partial "skill-group.html" . }}
+        {{- end }}
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,58 @@
+{{- define "main" }}
+<article class="container page project">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a class="text-link text-link--back" href="{{ "projects/" | relURL }}">{{ partial "icon.html" "arrow-left" }} All projects</a>
+  </nav>
+
+  <header class="page-header project__header">
+    <p class="eyebrow mono">
+      {{- with .Params.category }}{{ . }} project{{ else }}Project{{ end }}
+      {{- if .Params.placeholder }} <span class="badge badge--placeholder">Placeholder</span>{{ end }}
+    </p>
+    <h1 class="page-header__title">{{ .Title }}</h1>
+    {{- with .Summary | plainify | strings.TrimSpace }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+
+    {{- if or .Params.repo .Params.demo }}
+      <div class="project__links">
+        {{- with .Params.repo }}<a class="button button--primary" href="{{ . }}" rel="noopener" target="_blank">{{ partial "icon.html" "github" }} View code</a>{{ end }}
+        {{- with .Params.demo }}<a class="button button--ghost" href="{{ . }}" rel="noopener" target="_blank">{{ partial "icon.html" "external" }} Live demo</a>{{ end }}
+      </div>
+    {{- end }}
+  </header>
+
+  <div class="project__layout">
+    <aside class="project__meta" aria-label="Project details">
+      <dl class="meta-list">
+        <div><dt class="mono">Role</dt><dd>{{ with .Params.role }}{{ . }}{{ else }}{{ partial "placeholder.html" "Role" }}{{ end }}</dd></div>
+        {{- with .Params.year }}<div><dt class="mono">Year</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{- with .Params.category }}<div><dt class="mono">Type</dt><dd>{{ . }}</dd></div>{{ end }}
+        {{- with .Params.tech }}
+          <div>
+            <dt class="mono">Stack</dt>
+            <dd><ul class="tags" role="list">{{ range . }}<li class="tag">{{ . }}</li>{{ end }}</ul></dd>
+          </div>
+        {{- end }}
+      </dl>
+    </aside>
+
+    <div class="prose project__body">
+      {{ .Content }}
+    </div>
+  </div>
+
+  {{- /* Previous / next navigation within the projects section (by weight). */}}
+  {{- $pages := .CurrentSection.Pages.ByWeight }}
+  {{- $current := 0 }}
+  {{- range $i, $p := $pages }}{{ if eq $p $ }}{{ $current = $i }}{{ end }}{{ end }}
+  {{- $prev := false }}
+  {{- $next := false }}
+  {{- if gt $current 0 }}{{ $prev = index $pages (sub $current 1) }}{{ end }}
+  {{- if lt $current (sub (len $pages) 1) }}{{ $next = index $pages (add $current 1) }}{{ end }}
+  {{- if or $prev $next }}
+    <nav class="pager" aria-label="More projects">
+      {{- with $prev }}<a class="pager__link" href="{{ .RelPermalink }}"><span class="mono">← Previous</span>{{ .Title }}</a>{{ else }}<span></span>{{ end }}
+      {{- with $next }}<a class="pager__link pager__link--next" href="{{ .RelPermalink }}"><span class="mono">Next →</span>{{ .Title }}</a>{{ end }}
+    </nav>
+  {{- end }}
+</article>
+{{- end }}

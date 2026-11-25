@@ -1,0 +1,62 @@
+# -----------------------------------------------------------------------------
+# Personal profile. Used by the home page, the CV page, SEO metadata and footer.
+# Empty values ("") are hidden on the site or shown as a "to be added" marker.
+# -----------------------------------------------------------------------------
+
+name: Muhammed Sadiq
+title: System & Software Engineering
+
+# One-sentence introduction shown in the hero.
+tagline: >-
+  Software Engineering student focused on backend development —
+  building web systems with Laravel and PHP, from the database to the interface.
+
+# PLACEHOLDER — e.g. "Erbil, Kurdistan Region, Iraq"
+location: ""
+
+# PLACEHOLDER — public contact email.
+email: ""
+
+# Optional: path to a downloadable CV PDF placed in static/, e.g. "files/muhammed-sadiq-cv.pdf"
+cvPdf: ""
+
+# DRAFT bio, written only from the information you provided. Please review and edit.
+bio:
+  - >-
+    I'm a Software Engineering & Informatics student at Salahaddin University with a focus on
+    backend development. Most of my work is built with Laravel and PHP, and I also work on
+    full-stack applications that connect a solid backend to a clear, usable interface.
+  - >-
+    I'm interested in how software systems are designed and structured — backend architecture,
+    data modelling and code that stays maintainable as a project grows. Alongside web
+    development, I work with Java and Spring Boot, React, Flutter and SQL.
+  - >-
+    I also use AutoCAD for 2D design and CNC work, which adds a practical engineering side
+    to my technical skill set.
+
+interests:
+  - Software Engineering
+  - System Development
+  - Backend Architecture
+  - Technology
+
+# Short "spec sheet" shown next to the hero.
+summary:
+  - label: Role
+    value: Software Engineering student
+  - label: Focus
+    value: Backend & full-stack development
+  - label: Core stack
+    value: Laravel, PHP, SQL
+  - label: Also
+    value: Java, Spring Boot, React, Flutter
+
+# Social / professional profiles. Entries with an empty url are not shown.
+# icon must be one of: github, linkedin, mail, link
+social:
+  - name: GitHub
+    icon: github
+    url: ""   # PLACEHOLDER — e.g. "https://github.com/username"
+  - name: LinkedIn
+    icon: linkedin
+    url: ""   # PLACEHOLDER — e.g. "https://www.linkedin.com/in/username"
