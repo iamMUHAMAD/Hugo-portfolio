@@ -116,8 +116,13 @@ placeholder: false
 7. Do not modify unrelated files.
 8. **Do not commit, push, publish or deploy without explicit permission.**
 
-## Before deploying
+## Deployment
 
-- Set `baseURL` in `hugo.toml` to the real URL.
-- Replace all placeholders (search the site for "to be added" and `placeholder: true`).
-- Run `hugo --minify --panicOnWarning` and confirm it succeeds.
+- Hosted on **GitHub Pages**: https://iammuhamad.github.io/Hugo-portfolio/ (repo `iamMUHAMAD/Hugo-portfolio`).
+- `.github/workflows/hugo.yaml` builds with Hugo Extended 0.170.1 and deploys on every push to
+  `main`, or manually from the Actions tab (`workflow_dispatch`). Pages source must be set to
+  **GitHub Actions** in the repository settings.
+- `public/` is build output and is git-ignored — never commit it.
+- When upgrading Hugo locally, update `HUGO_VERSION` in the workflow to match.
+- Before pushing: replace placeholders (search for "to be added" and `placeholder: true`) and run
+  `hugo --minify --panicOnWarning`.

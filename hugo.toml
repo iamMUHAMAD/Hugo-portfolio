@@ -4,11 +4,10 @@
 # site-wide settings: URLs, SEO defaults, navigation and build options.
 # =============================================================================
 
-# PLACEHOLDER: replace with the real address before deploying.
-# Examples: "https://username.github.io/"  or  "https://www.yourdomain.com/"
-# If the site is served from a sub-path (e.g. GitHub project pages), include it:
-# "https://username.github.io/portfolio/"
-baseURL = "https://example.com/"
+# Public address of the site (GitHub Pages project site for repo iamMUHAMAD/Hugo-portfolio).
+# The trailing slash and the "/Hugo-portfolio/" sub-path are required.
+# The GitHub Actions workflow passes the same URL via --baseURL, read from the Pages settings.
+baseURL = "https://iammuhamad.github.io/Hugo-portfolio/"
 
 locale = "en"
 title = "Muhammed Sadiq"
